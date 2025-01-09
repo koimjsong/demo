@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내통장결제</title>
+    <link rel="stylesheet" th:href="@{/css/verify-phone.css}">
+</head>
+<body>
+<div class="container">
+    <!-- 본문 -->
+    <div class="content">
+        <h2>본인명의 휴대폰으로 인증해 주세요.</h2>
+
+        <!-- 이름 입력 -->
+        <div class="input-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" value="홍길동" readonly>
+        </div>
+
+        <!-- 주민등록번호 입력 -->
+        <div class="input-group">
+            <label>주민등록번호</label>
+            <div class="resident-number">
+                <input type="text" id="residentNumber1" maxlength="6" placeholder="991231">
+                <span>-</span>
+                <input type="password" id="residentNumber2" maxlength="1" placeholder="1">
+                <span>● ● ● ● ●</span>
+            </div>
+        </div>
+
+        <!-- 통신사 선택 -->
+        <div class="input-group">
+            <label for="carrier">통신사 선택</label>
+            <input type="text" id="carrier" placeholder="통신사를 선택하세요" readonly>
+        </div>
+    </div>
+
+    <!-- 모달 -->
+    <div id="carrierModal" class="modal">
+        <div class="modal-content">
+            <ul class="carrier-list">
+                <li class="carrier-item">SKT</li>
+                <li class="carrier-item">KT</li>
+                <li class="carrier-item">LG U+</li>
+                <li class="carrier-item">SKT 알뜰폰</li>
+                <li class="carrier-item">KT 알뜰폰</li>
+                <li class="carrier-item">LG U+ 알뜰폰</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/auth/verifyPhone.js}"></script>
+</body>
+</html>

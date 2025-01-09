@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내통장결제</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="payment-container">
+    <!-- 헤더 영역 -->
+    <div class="header">
+        <h1>내통장결제</h1>
+        <button class="close-button">×</button>
+    </div>
+
+    <!-- 본문 영역 -->
+    <div class="content">
+<!--        <form id="loginForm" th:action="@{/login}" method="post">-->
+            <!-- 로그인 안내 -->
+            <div class="login-row">
+                <p class="login-label">휴대폰번호로 로그인</p>
+                <label class="toggle-container">
+                    자동로그인
+                    <input type="checkbox" name="autoLogin" style="display:none">
+                    <span class="toggle-switch"></span>
+                </label>
+            </div>
+
+            <!-- 전화번호 입력 -->
+            <div class="input-container">
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="010 1234 5678" required>
+            </div>
+
+            <form id="authForm" action="/verifyPhone" method="GET">
+                <!-- 다음 버튼 -->
+                <button type="submit" class="next-button" id="nextButton" disabled>다음</button>
+            </form>
+<!--        </form>-->
+    </div>
+
+    <!-- 하단 안내 영역 -->
+    <div class="footer">
+        <p>휴대전화번호 변경을 하시려면 <a href="/update-phone">여기</a>를 누르세요.</p>
+    </div>
+</div>
+
+<script th:src="@{/js/auth/login.js}"></script>
+</body>
+</html>
