@@ -149,7 +149,6 @@ h2 {
 #phoneNumber {
     flex: 1; /* 넓이 자동 조정 */
     padding: 10px;
-    font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f5f5f5;
@@ -240,5 +239,57 @@ h2 {
 
 .footer button.active {
     background-color: #007bff;
+    cursor: pointer;
+}
+
+/* 약관 동의 섹션 */
+.agreement-group {
+    margin-top: 20px;
+}
+
+.agreement-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.agreement-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.agreement-checkbox {
+    margin-right: 10px;
+}
+
+.agreement-link {
+    font-size: 14px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.agreement-link:hover {
+    text-decoration: underline;
+}
+
+.certify-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #ddd;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: not-allowed;
+}
+
+.certify-button.active {
+    background-color: #007BFF;
     cursor: pointer;
 }

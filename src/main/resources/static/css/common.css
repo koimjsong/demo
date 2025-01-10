@@ -1,0 +1,41 @@
+/* 공통 헤더 스타일 */
+.common-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+    color: #333;
+}
+
+.header-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-button span,
+.close-button span {
+    font-size: 24px;
+    color: #333;
+}
+
+.header-button:hover span {
+    color: #007BFF; /* 버튼 호버 시 색상 */
+}

@@ -27,12 +27,13 @@
                 </label>
             </div>
 
-            <!-- 전화번호 입력 -->
-            <div class="input-container">
-                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="010 1234 5678" required>
-            </div>
+            <form id="authForm" action="/verifyPhone" method="POST">
+                <!-- 전화번호 입력 -->
+                <div class="input-container">
+                    <input type="text" maxlength="13" id="phoneNumber" name="phoneNumber" placeholder="010 1234 5678" required>
+                </div>
 
-            <form id="authForm" action="/verifyPhone" method="GET">
+
                 <!-- 다음 버튼 -->
                 <button type="submit" class="next-button" id="nextButton" disabled>다음</button>
             </form>

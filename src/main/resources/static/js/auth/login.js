@@ -24,5 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
             nextButton.disabled = true;
             nextButton.classList.remove("active");
         }
+
     });
 });

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="common-header(title)">
+    <header class="common-header">
+        <button class="header-button back-button" onclick="history.back()">
+            <span>&#8249;</span>
+        </button>
+        <h1 class="header-title" th:text="${title}"></h1>
+        <button class="header-button close-button">
+            <span>&#10005;</span>
+        </button>
+    </header>
+</div>
+</html>

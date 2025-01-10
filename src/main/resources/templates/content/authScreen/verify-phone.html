@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내통장결제</title>
     <link rel="stylesheet" th:href="@{/css/verify-phone.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
 </head>
 <body>
 <div class="container">
+    <div th:replace="layout/fragments/header :: common-header('내통장결제')"></div>
+
     <!-- 본문 -->
     <div class="content">
         <h2>본인명의 휴대폰으로 인증해 주세요.</h2>
@@ -15,7 +18,7 @@
         <!-- 이름 입력 -->
         <div class="input-group">
             <label for="name">이름</label>
-            <input type="text" id="name" value="홍길동" readonly>
+            <input type="text" id="name" placeholder="홍길동">
         </div>
 
         <!-- 주민등록번호 입력 -->
@@ -24,7 +27,7 @@
             <div class="resident-number">
                 <input type="text" id="residentNumber1" maxlength="6" placeholder="991231">
                 <span>-</span>
-                <input type="password" id="residentNumber2" maxlength="1" placeholder="1">
+                <input type="text" id="residentNumber2" maxlength="1" placeholder="1">
                 <span>● ● ● ● ●</span>
             </div>
         </div>
@@ -36,9 +39,38 @@
                 <!-- 통신사 선택 버튼 -->
                 <button id="carrierButton" class="carrier-button">통신사 선택</button>
                 <!-- 핸드폰 번호 (수정 불가) -->
-                <input type="text" id="phoneNumber" value="010 1234 5678" readonly>
+                <input type="text" id="phoneNumber" th:value="${phoneNumber}" readonly>
             </div>
         </div>
+
+        <!-- 약관 동의 -->
+        <div class="agreement-group">
+            <ul class="agreement-list">
+                <li class="agreement-item">
+                    <label>
+                        <input type="checkbox" class="agreement-checkbox">
+                        전자금융거래 이용약관 (필수)
+                    </label>
+                    <a href="#" class="agreement-link">보기</a>
+                </li>
+                <li class="agreement-item">
+                    <label>
+                        <input type="checkbox" class="agreement-checkbox">
+                        서비스 이용약관 전체동의 (선택동의 포함)
+                    </label>
+                    <a href="#" class="agreement-link">펼치기</a>
+                </li>
+                <li class="agreement-item">
+                    <label>
+                        <input type="checkbox" class="agreement-checkbox">
+                        본인 확인 이용약관 (필수)
+                    </label>
+                    <a href="#" class="agreement-link">펼치기</a>
+                </li>
+            </ul>
+
+            <!-- 인증 요청 버튼 -->
+            <button id="certifyButton" class="certify-button" disabled>인증요청</button>
     </div>
 
     <!-- 모달 -->
