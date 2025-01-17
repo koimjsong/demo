@@ -27,4 +27,9 @@ public class AuthViewController {
         return "/content/authScreen/verify-phone";
     }
 
+    @GetMapping("/email-login")
+    public String emailLogin(Model model) {
+        return "/content/authScreen/email-login";
+    }
+
 }

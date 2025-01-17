@@ -2,8 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home</title>
+    <style>
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 200px;
+            margin: 20px auto;
+        }
+        .button-grid button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${message}">Welcome!</h1>
+    <h1 th:text="${email}">Welcome!</h1>
+    <div class="button-grid">
+        <button id="button1">Button 1</button>
+        <button id="button2">Button 2</button>
+        <button id="button3">Button 3</button>
+        <button id="button4">Button 4</button>
+    </div>
 </body>
 </html>

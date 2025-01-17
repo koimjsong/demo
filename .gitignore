@@ -14,6 +14,9 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
+application.properties
+firebase-service-account.json
+.env
 .idea
 *.iws
 *.iml
