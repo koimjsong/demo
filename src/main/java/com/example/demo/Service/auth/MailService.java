@@ -116,7 +116,7 @@ public class MailService {
         }
     }
 
-    private EmailVerificationResult verifiedCode(String email, String authCode) {
+    public EmailVerificationResult verifiedCode(String email, String authCode) {
         this.checkExistingMember(email);
         String redisAuthCode = redisService.getValues(AUTH_CODE_PREFIX + email);
         //boolean authResult = redisService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(authCode);
@@ -125,39 +125,26 @@ public class MailService {
         return EmailVerificationResult.of(authResult);
     }
 
-    public Map<String, Object> verifyEmailAndGenerateTokens(String email, String authCode, HttpServletResponse response) {
-        // 인증번호 검증
-        EmailVerificationResult verificationResult = this.verifiedCode(email, authCode);
+    public Map<String, Object> generateTokens(String email, HttpServletResponse response) {
+        // Access Token 및 Refresh Token 생성
+        String accessToken = jwtService.generateAccessToken(email);
+        String refreshToken = jwtService.generateRefreshToken(email);
 
-        if (verificationResult.isSuccess()) {
-            // 토큰 생성
-            String accessToken = jwtService.generateAccessToken(email);
-            String refreshToken = jwtService.generateRefreshToken(email);
+        // Refresh Token Redis에 저장
+        redisService.setValues("RT:" + email, refreshToken, Duration.ofMillis(REFRESH_TOKEN_EXPIRATION_MILLIS));
 
-            // Redis에 Refresh Token 저장
-            redisService.setValues("RT:" + email, refreshToken, Duration.ofDays(7));
+        // 쿠키 생성
+        ResponseCookie accessTokenCookie = CookieUtil.createCookie("accessToken", accessToken, ACCESS_CODE_EXPIRATION_MILLIS, false, true);
+        ResponseCookie refreshTokenCookie = CookieUtil.createCookie("refreshToken", refreshToken, REFRESH_TOKEN_EXPIRATION_MILLIS, false, true);
 
-            // 쿠키 생성 및 응답에 추가
-            ResponseCookie accessTokenCookie = CookieUtil.createCookie("accessToken", accessToken, ACCESS_CODE_EXPIRATION_MILLIS, false, true);
-            ResponseCookie refreshTokenCookie = CookieUtil.createCookie("refreshToken", refreshToken, REFRESH_TOKEN_EXPIRATION_MILLIS, false, true);
+        // 쿠키를 응답에 추가
+        CookieUtil.addCookieToResponse(response, accessTokenCookie);
+        CookieUtil.addCookieToResponse(response, refreshTokenCookie);
 
-            CookieUtil.addCookieToResponse(response, accessTokenCookie);
-            CookieUtil.addCookieToResponse(response, refreshTokenCookie);
-
-            Map<String, Object> responseMap = new HashMap<>();
-            responseMap.put("success", true);
-
-            return responseMap;
-        } else {
-            Map<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("success", false);
-            errorResponse.put("message", "인증에 실패했습니다. 인증번호를 다시 확인하세요.");
-
-            return errorResponse;
-        }
+        // 성공 응답 생성
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("success", true);
+        return responseMap;
     }
-
-
-
 
 }
