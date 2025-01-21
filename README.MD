@@ -1,4 +1,11 @@
 # Demo Project
+## branch dev1
+- 토큰 발급 시 httpOnly cookie 에 저장하여 javascript에서는 접근 가능하지 못하게 변경 -> 쿠키 생성 시 isHttpOnly를 true로 설정
+</br></br> 
+API 요청시 withCredentials: true 사용하도록 axios interceptor 수정.
+</br></br>
+- thymeleaf-extras-springsecurity6 사용 
+</br>
 1) 프론트 예제 구현해보는거라 spring security 는 설정하지 않음.
 </br></br>
 2) http://localhost:8080/email-login 으로 들어가서 이메일 인증 받는 것 먼저 해야 axios interceptor 기능이 잘 동작하는 지 확인 가능함.

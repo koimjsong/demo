@@ -1,9 +1,6 @@
 package com.example.demo.Service.auth;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
@@ -102,4 +99,30 @@ public class JwtService {
             return null;
         }
     }
+
+    public String refreshAccessToken(String refreshToken) {
+        try {
+            // Refresh Token 검증
+            Claims claims = Jwts.parser()
+                    .verifyWith(this.getSigningKey())
+                    .build()
+                    .parseSignedClaims(refreshToken)
+                    .getPayload();
+
+            // 만료된 경우 예외 처리
+            if (claims.getExpiration().before(new Date())) {
+                throw new IllegalArgumentException("Refresh Token has expired");
+            }
+
+            // Refresh Token에서 이메일 정보 추출
+            String email = claims.getSubject();
+
+            // 새로운 Access Token 생성
+            return generateAccessToken(email);
+        } catch (JwtException | IllegalArgumentException e) {
+            // 유효하지 않은 Refresh Token에 대한 처리
+            throw new IllegalArgumentException("Invalid Refresh Token", e);
+        }
+    }
+
 }

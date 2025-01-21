@@ -36,8 +36,17 @@ public class HomeApiController {
     @PutMapping("/posts/{id}")
     public ResponseEntity<Object> updatePost(@PathVariable("id") int id, @RequestBody Map<String, Object> payload) {
         String url = BASE_URL + "/posts/" + id;
-        restTemplate.put(url, payload); // PUT 요청
-        return ResponseEntity.ok(Map.of("message", "Post updated successfully", "id", id, "payload", payload));
+
+        Object post = restTemplate.getForObject(url, Map.class);
+        if (post != null) {
+            restTemplate.put(url, payload); // PUT 요청
+            return ResponseEntity.ok(Map.of("message", "Post updated successfully", "id", id, "payload", payload));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
+                    "message", "Post ID does not exist",
+                    "id", id
+            ));
+        }
     }
 
     // DELETE 예제

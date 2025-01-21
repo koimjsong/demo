@@ -29,10 +29,13 @@ public class MailService {
     private long AUTH_CODE_EXPIRATION_MILLIS;
 
     @Value("${token.expiration.access}")
-    private long ACCESS_CODE_EXPIRATION_MILLIS;
+    private long ACCESS_TOKEN_EXPIRATION_MILLIS;
 
     @Value("${token.expiration.refresh}")
     private long REFRESH_TOKEN_EXPIRATION_MILLIS;
+
+    @Value("${cookie.secure:false}") // 개발 환경: HTTPS가 없으니까 false
+    private boolean isSecure;
 
     private final JavaMailSender emailSender;
     private final RedisService redisService;
@@ -134,8 +137,10 @@ public class MailService {
         redisService.setValues("RT:" + email, refreshToken, Duration.ofMillis(REFRESH_TOKEN_EXPIRATION_MILLIS));
 
         // 쿠키 생성
-        ResponseCookie accessTokenCookie = CookieUtil.createCookie("accessToken", accessToken, ACCESS_CODE_EXPIRATION_MILLIS, false, true);
-        ResponseCookie refreshTokenCookie = CookieUtil.createCookie("refreshToken", refreshToken, REFRESH_TOKEN_EXPIRATION_MILLIS, false, true);
+        ResponseCookie accessTokenCookie = CookieUtil.createCookie(
+                "accessToken", accessToken, ACCESS_TOKEN_EXPIRATION_MILLIS, true, isSecure);
+        ResponseCookie refreshTokenCookie = CookieUtil.createCookie(
+                "refreshToken", refreshToken, REFRESH_TOKEN_EXPIRATION_MILLIS, true, isSecure);
 
         // 쿠키를 응답에 추가
         CookieUtil.addCookieToResponse(response, accessTokenCookie);
