@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toast UI Date Picker</title>
+  <div th:replace="fragments/lib"/>
+  <!-- Toast UI Date Picker -->
+  <style>
+    /* 달력 아이콘 숨기기 */
+    .tui-ico-date {
+      display: none;
+    }
+    .range-date-picker-container {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="single-date-picker-container">
+      <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+        <input type="text" id="tui-date-picker-target" aria-label="Date-Time" />
+        <span class="tui-ico-date"></span>
+      </div>
+      <div id="tui-date-picker-container" style="margin-top: -1px;"></div>
+    </div>
+
+    <div class="range-date-picker-container">
+      <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+        <input id="startpicker-input" type="text" autocomplete="off" readonly="readonly">
+        <div id="startpicker-container"></div>
+      </div>
+
+      <div class="flex-grow-0 d-flex align-items-center mx-1">~</div>
+
+      <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+        <input id="endpicker-input" type="text" autocomplete="off" readonly="readonly">
+        <div id="endpicker-container"></div>
+      </div>
+    </div>
+
+    <div class="time-picker-container">
+      <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+        <input type="text" id="datetime-picker-input" aria-label="Date-Time">
+        <span class="tui-ico-date"></span>
+      </div>
+      <div id="timepicker-container" style="margin-top: -1px;"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/pages/test/toastUi.js"></script>
+  <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
+  <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+</body>
+</html>

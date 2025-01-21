@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flatpickr Example</title>
+
+    <script type="module" src="/js/pages/test/flatpickr.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Flatpickr JS -->
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="datepicker-container">
+        <label for="start-date">시작날짜</label>
+        <input type="text" id="start-date" class="datepicker" placeholder="YYYY-MM-DD">
+
+        <label for="end-date">끝날짜</label>
+        <input type="text" id="end-date" class="datepicker" placeholder="YYYY-MM-DD">
+    </div>
+
+    <button id="submit-btn">확인</button>
+</div>
+
+</body>
+</html>

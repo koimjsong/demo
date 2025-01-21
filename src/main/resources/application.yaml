@@ -39,3 +39,9 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect
+
+
+token:
+  expiration:
+    access: 30000       # AccessToken 유효기간 30초 (밀리초)
+    refresh: 300000     # RefreshToken 유효기간 5분 (밀리초)

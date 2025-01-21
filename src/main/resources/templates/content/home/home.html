@@ -2,28 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home</title>
-    <style>
-        .button-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            width: 200px;
-            margin: 20px auto;
-        }
-        .button-grid button {
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+    <div th:replace="fragments/lib"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
     <h1 th:text="${email}">Welcome!</h1>
     <div class="button-grid">
-        <button id="button1">Button 1</button>
-        <button id="button2">Button 2</button>
-        <button id="button3">Button 3</button>
-        <button id="button4">Button 4</button>
+        <button id="button1">GET</button>
+        <button id="button2">DELETE</button>
     </div>
+
+    <div class="main-container">
+        <div class="input-container">
+            <label for="update-content">UPDATE/POST 테스트</label>
+
+            <input type="number" id="user-id" placeholder="User ID를 입력하세요" />
+            <input type="text" id="title-content" placeholder="Title을 입력하세요" />
+            <textarea id="update-content" placeholder="내용을 입력하세요" rows="4" cols="50"></textarea>
+
+            <button id="post-button">Post</button>
+            <button id="update-button">Update</button>
+        </div>
+
+        <div class="response-container" id="response-container">
+            <h3>Response</h3>
+            <pre id="response-output">응답 없음</pre>
+        </div>
+    </div>
+
+    <script type="module" src="/js/pages/home/home.js"></script>
 </body>
 </html>
