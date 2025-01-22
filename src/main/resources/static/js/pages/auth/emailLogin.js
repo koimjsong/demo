@@ -1,5 +1,3 @@
-import {apiRequest, getRequest, postRequest} from "../../utils/api.js";
-
 document.addEventListener("DOMContentLoaded", () => {
     const sendEmailButton = document.getElementById("send-email");
     const verifyForm = document.getElementById("verify-form");

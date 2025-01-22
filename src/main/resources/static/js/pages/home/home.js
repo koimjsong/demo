@@ -1,5 +1,3 @@
-import { getRequest, postRequest, putRequest, deleteRequest } from "../../utils/api.js";
-
 document.addEventListener("DOMContentLoaded", () => {
 
     const responseOutput = document.getElementById("response-output");

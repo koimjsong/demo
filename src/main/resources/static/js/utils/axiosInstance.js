@@ -2,7 +2,6 @@ const BASE_URL = "http://localhost:8080";
 
 // Axios 인스턴스 생성
 const axiosInstance = axios.create({
-  //baseURL: "https://jsonplaceholder.typicode.com", // Mock API URL
     baseURL: BASE_URL,
   timeout: 10000, // 요청 타임아웃 (10초)
   headers: {
@@ -78,5 +77,3 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-export default axiosInstance;
