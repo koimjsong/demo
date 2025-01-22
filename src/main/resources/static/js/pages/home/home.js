@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const responseOutput = document.getElementById("response-output");
-    const userId = document.getElementById("user-id").value;
-    const title = document.getElementById("title-content").value;
-    const content = document.getElementById("update-content").value;
+    const userId = document.getElementById("user-id");
+    const title = document.getElementById("title-content");
+    const content = document.getElementById("update-content");
 
     getButtonEvent(responseOutput);
     deleteButtonEvent(responseOutput);
@@ -39,13 +39,13 @@ function postButtonEvent(userId, title, content) {
     document.getElementById("post-button").addEventListener("click", async () => {
 
         try {
-            console.log(`${userId} ${title} ${content}`);
+
             const response = await postRequest("/api/home/posts", {
-                userId: parseInt(userId, 10),
-                title: title,
-                body: content,
+                userId: parseInt(userId.value, 10),
+                title: title.value,
+                body: content.value,
             });
-            console.log(response);
+
             document.getElementById("response-output").textContent = JSON.stringify(response, null, 2);
         } catch (error) {
             console.error("Error during post request:", error);
@@ -61,9 +61,9 @@ function updateButtonEvent(userId, title, content) {
 
         try {
             const payload = {
-                userId: parseInt(userId, 10),
-                title,
-                body: content,
+                userId: parseInt(userId.value, 10),
+                title: title.value,
+                body: content.value,
             };
             const response = await putRequest(`/api/home/posts/${postId}`, payload);
             document.getElementById("response-output").textContent = JSON.stringify(response, null, 2);
