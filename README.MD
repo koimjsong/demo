@@ -4,9 +4,9 @@
 </br></br> 
 API 요청시 withCredentials: true 사용하도록 axios interceptor 수정.
 </br></br>
-- thymeleaf-extras-springsecurity6 사용 
+- thymeleaf-extras-springsecurity6 사용 - 아직 안함. 
 </br>
-1) 프론트 예제 구현해보는거라 spring security 는 설정하지 않음.
+1) 토큰이 httpOnly Cookie에 있기 때문에 back 단에서 토큰 검증하도록 하기 위해서 spring security 설정함. 
 </br></br>
 2) http://localhost:8080/email-login 으로 들어가서 이메일 인증 받는 것 먼저 해야 axios interceptor 기능이 잘 동작하는 지 확인 가능함.
 </br></br>

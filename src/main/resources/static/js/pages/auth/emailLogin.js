@@ -68,10 +68,12 @@ async function handleEmailVerification() {
             {email: decodeURIComponent(email), code: decodeURIComponent(verificationCode)}
             );
 
+            console.log(response);
+
         if (response.success) {
             alert("이메일 인증에 성공했습니다.");
             document.cookie = `email=${encodeURIComponent(email)}; path=/; secure; HttpOnly;`;
-            window.location.href = "/home";
+            window.location.href = response.redirectUrl;
         } else {
             alert(response.message || "인증 실패");
         }

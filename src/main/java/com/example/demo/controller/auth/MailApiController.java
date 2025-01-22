@@ -40,9 +40,14 @@ public class MailApiController {
         EmailVerificationResult verificationResult = mailService.verifiedCode(email, authCode);
 
         if (verificationResult.isSuccess()) {
-            // 토큰 생성 및 응답에 추가
-            Map<String, Object> tokensResponse = mailService.generateTokens(email, response);
-            return ResponseEntity.ok(tokensResponse);
+            // 토큰 생성 및 쿠키 추가
+            mailService.generateTokens(email, response);
+
+            // 성공 리다이렉트 URL 추가
+            Map<String, Object> successResponse = new HashMap<>();
+            successResponse.put("success", true);
+            successResponse.put("redirectUrl", "/home");
+            return ResponseEntity.ok(successResponse);
         } else {
             Map<String, Object> errorResponse = new HashMap<>();
             errorResponse.put("success", false);
