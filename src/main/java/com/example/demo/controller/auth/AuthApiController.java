@@ -80,7 +80,7 @@ public class AuthApiController {
 
             // 새 Access Token을 HttpOnly 쿠키로 설정
             ResponseCookie accessTokenCookie = CookieUtil.createCookie("accessToken", newAccessToken, ACCESS_TOKEN_EXPIRATION, false, true);
-            response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
+            CookieUtil.addCookieToResponse(response, accessTokenCookie);
 
             return ResponseEntity.ok(Map.of("success", true, "message", "Access Token refreshed"));
         } catch (Exception e) {

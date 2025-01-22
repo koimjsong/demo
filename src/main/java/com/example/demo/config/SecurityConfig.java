@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/email-login").permitAll()  // 로그인창 URL 허용
                         .requestMatchers("/home").authenticated()
                         .requestMatchers("/css/**", "/js/**").permitAll() // CSS 및 JS 파일 허용
-                        .requestMatchers("/api/auth/**", "/api/email/verify").permitAll()
+                        .requestMatchers("/api/auth/**", "/api/email/verify",  "/api/email/send-code").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
 
